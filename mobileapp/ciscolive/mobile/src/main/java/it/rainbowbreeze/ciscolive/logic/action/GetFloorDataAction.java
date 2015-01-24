@@ -1,6 +1,9 @@
 package it.rainbowbreeze.ciscolive.logic.action;
 
+import android.text.TextUtils;
+
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
+import it.rainbowbreeze.ciscolive.domain.Floor;
 import it.rainbowbreeze.ciscolive.logic.CmxManager;
 
 /**
@@ -11,6 +14,8 @@ public class GetFloorDataAction extends ActionsManager.BaseAction {
 
     private final ILogFacility mLogFacility;
     private final CmxManager mCmxManager;
+    private String mVenueId;
+    private String mFloorId;
 
     public GetFloorDataAction(ILogFacility logFacility, ActionsManager actionManager, CmxManager cmxManager) {
         super(logFacility, actionManager);
@@ -18,14 +23,24 @@ public class GetFloorDataAction extends ActionsManager.BaseAction {
         mCmxManager = cmxManager;
     }
 
+    public GetFloorDataAction setFloorId(String newValue) {
+        mFloorId = newValue;
+        return this;
+    }
+
+    public GetFloorDataAction setVenueId(String newValue) {
+        mVenueId = newValue;
+        return this;
+    }
+
     @Override
     protected boolean isDataValid() {
-        return true;
+        return !TextUtils.isEmpty(mVenueId) && !TextUtils.isEmpty(mFloorId);
     }
 
     @Override
     protected void doYourStuff() {
-
+        Floor floor = mCmxManager.getFloorInfo(mVenueId, mFloorId);
     }
 
     @Override

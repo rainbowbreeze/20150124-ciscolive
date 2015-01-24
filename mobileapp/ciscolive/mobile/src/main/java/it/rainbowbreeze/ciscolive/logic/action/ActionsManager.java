@@ -24,10 +24,8 @@ public class ActionsManager extends RainbowActionsManager {
         mCmxManager = cmxManager;
     }
 
-    /*
-    public SubscribeClientToGcmAction subscribeClientToGcm() {
-        return new SubscribeClientToGcmAction(mLogFacility, mBackendHelper, this);
+    public GetFloorDataAction getFloorDataAction() {
+        return new GetFloorDataAction(mLogFacility, this, mCmxManager);
     }
-    */
 
 }

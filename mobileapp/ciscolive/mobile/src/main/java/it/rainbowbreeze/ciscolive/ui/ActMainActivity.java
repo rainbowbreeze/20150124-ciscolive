@@ -18,7 +18,8 @@ import it.rainbowbreeze.ciscolive.R;
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.common.MyApp;
 import it.rainbowbreeze.ciscolive.logic.CmxManager;
-import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
+import it.rainbowbreeze.ciscolive.logic.CmxRegistrationResultEventzzzz;
+import it.rainbowbreeze.ciscolive.logic.action.ActionsManager;
 
 
 public class ActMainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -40,8 +41,8 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
     ViewPager mViewPager;
 
     @Inject ILogFacility mLogFacility;
-    @Inject
-    CmxManager mCmxManager;
+    @Inject CmxManager mCmxManager;
+    @Inject ActionsManager mActionsManager;
     @Inject Bus mBus;
 
     @Override
@@ -91,6 +92,10 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
             mCmxManager.register();
         } else {
             mLogFacility.v(LOG_TAG, "CMX server already registered, start location updates");
+            mActionsManager.getFloorDataAction()
+                    .setVenueId("ssss")
+                    .setFloorId("alll")
+                    .executeAsync();
             mCmxManager.startLocationUpdate();
         }
 
@@ -157,7 +162,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
      */
 
     @Subscribe
-    public void onCmxRegistrationResult(CmxRegistrationResultEvent event) {
+    public void onCmxRegistrationResult(CmxRegistrationResultEventzzzz event) {
         mLogFacility.v(LOG_TAG, "CMX registration result: " + event.isRegistered());
         if (event.isRegistered()) {
             mLogFacility.v(LOG_TAG, "Starting location updates");
