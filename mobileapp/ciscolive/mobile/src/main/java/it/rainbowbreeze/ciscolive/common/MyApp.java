@@ -2,6 +2,7 @@ package it.rainbowbreeze.ciscolive.common;
 
 import android.app.Application;
 
+import com.cisco.cmx.network.CMXClient;
 import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
@@ -49,8 +50,9 @@ public class MyApp extends Application {
         Picasso.with(getApplicationContext()).setLoggingEnabled(BuildConfig.DEBUG);
 
         mObjectGraph = ObjectGraph.create(getModules().toArray());
-
         inject(this);
+
+        CMXClient.getInstance().initialize(getApplicationContext());
         mAppPreferences.setDefaultValues(false);
     }
 
