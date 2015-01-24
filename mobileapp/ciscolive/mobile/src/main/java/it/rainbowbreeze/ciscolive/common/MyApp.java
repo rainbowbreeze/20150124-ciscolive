@@ -2,7 +2,6 @@ package it.rainbowbreeze.ciscolive.common;
 
 import android.app.Application;
 
-import com.cisco.cmx.network.CMXClient;
 import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import javax.inject.Inject;
 import dagger.ObjectGraph;
 import it.rainbowbreeze.ciscolive.BuildConfig;
 import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 
 /**
  * This file is part of KeepMoving. KeepMoving is free software: you can
@@ -41,6 +41,7 @@ import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
 public class MyApp extends Application {
     private ObjectGraph mObjectGraph;
     @Inject AppPrefsManager mAppPreferences;
+    @Inject CmxManager mCmxManager;
 
     @Override
     public void onCreate() {
@@ -52,8 +53,8 @@ public class MyApp extends Application {
         mObjectGraph = ObjectGraph.create(getModules().toArray());
         inject(this);
 
-        CMXClient.getInstance().initialize(getApplicationContext());
         mAppPreferences.setDefaultValues(false);
+        mCmxManager.initialize();
     }
 
     /**

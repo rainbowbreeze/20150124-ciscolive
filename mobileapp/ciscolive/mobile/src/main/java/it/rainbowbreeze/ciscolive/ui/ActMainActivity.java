@@ -4,24 +4,27 @@ import java.util.Locale;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+
+import javax.inject.Inject;
 
 import it.rainbowbreeze.ciscolive.R;
+import it.rainbowbreeze.ciscolive.common.ILogFacility;
+import it.rainbowbreeze.ciscolive.common.MyApp;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
+import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 
 
 public class ActMainActivity extends ActionBarActivity implements ActionBar.TabListener {
+    private static final String LOG_TAG = ActMainActivity.class.getSimpleName();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,9 +41,16 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
      */
     ViewPager mViewPager;
 
+    @Inject ILogFacility mLogFacility;
+    @Inject CmxManager mCmxManager;
+    @Inject Bus mBus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((MyApp) getApplicationContext()).inject(this);
+        mLogFacility.logStartOfActivity(LOG_TAG, getClass(), savedInstanceState);
+
         setContentView(R.layout.act_main);
 
         // Set up the action bar.
@@ -49,7 +59,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -76,8 +86,16 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-    }
 
+        if (mCmxManager.registrationRequired()) {
+            mLogFacility.v(LOG_TAG, "Registering the CMX server");
+            mCmxManager.register();
+        } else {
+            mLogFacility.v(LOG_TAG, "CMX server already registered, start location updates");
+            mCmxManager.startLocationUpdate();
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,74 +134,37 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBus.unregister(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBus.register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCmxManager.stopLocationUpdate();
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
-            }
-            return null;
-        }
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fra_main, container, false);
-            return rootView;
+    @Subscribe
+    public void onCmxRegistrationResult(CmxRegistrationResultEvent event) {
+        mLogFacility.v(LOG_TAG, "CMX registration result: " + event.isRegistered());
+        if (event.isRegistered()) {
+            mLogFacility.v(LOG_TAG, "Starting location updates");
+            mCmxManager.startLocationUpdate();
+        } else {
+            mLogFacility.e(LOG_TAG, "Cannot start location updates because the registration failed");
         }
     }
 
