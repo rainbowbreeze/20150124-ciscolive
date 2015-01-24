@@ -18,7 +18,7 @@ import it.rainbowbreeze.ciscolive.R;
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.common.MyApp;
 import it.rainbowbreeze.ciscolive.logic.CmxManager;
-import it.rainbowbreeze.ciscolive.logic.CmxRegistrationResultEventzzzz;
+import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 import it.rainbowbreeze.ciscolive.logic.action.ActionsManager;
 
 
@@ -162,7 +162,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
      */
 
     @Subscribe
-    public void onCmxRegistrationResult(CmxRegistrationResultEventzzzz event) {
+    public void onCmxRegistrationResult(CmxRegistrationResultEvent event) {
         mLogFacility.v(LOG_TAG, "CMX registration result: " + event.isRegistered());
         if (event.isRegistered()) {
             mLogFacility.v(LOG_TAG, "Starting location updates");
