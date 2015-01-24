@@ -54,10 +54,12 @@ public class AppPrefsManager extends RainbowAppPrefsManager {
     }
 
     public String getServerAddress() {
-        return "64.103.26.61";
+        //return "64.103.26.61";
+        return "10.10.20.13";
     }
     public String getServerPort() {
-        return "8081";
+        //return "8081";
+        return "8082";
     }
 
     /**

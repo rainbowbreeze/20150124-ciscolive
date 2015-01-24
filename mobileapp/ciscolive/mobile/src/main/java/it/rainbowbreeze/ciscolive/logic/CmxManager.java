@@ -17,6 +17,7 @@ import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
 import it.rainbowbreeze.ciscolive.domain.Floor;
 import it.rainbowbreeze.ciscolive.logic.bus.CmxLocationUpdatedEvent;
+import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 
 /**
  * Created by alfredomorresi on 24/01/15.
@@ -68,14 +69,14 @@ public class CmxManager {
             @Override
             public void onFailure(Throwable error) {
                 mLogFacility.e(LOG_TAG, "Error while registering to CMX server: " + error.getMessage());
-                mBus.post(new CmxRegistrationResultEventzzzz(false));
+                mBus.post(new CmxRegistrationResultEvent(false));
             }
 
             @Override
             public void onSuccess() {
                 super.onSuccess();
                 mLogFacility.v(LOG_TAG, "Registered with CMX server! :)");
-                mBus.post(new CmxRegistrationResultEventzzzz(true));
+                mBus.post(new CmxRegistrationResultEvent(true));
             }
         });
 
@@ -132,7 +133,7 @@ public class CmxManager {
 
             @Override
             public void onFailure(Throwable error) {
-                mLogFacility.v(LOG_TAG, "Failed to load venues");
+                mLogFacility.v(LOG_TAG, "Failed to load venues: " + error.getMessage());
             }
         });
         return null;
