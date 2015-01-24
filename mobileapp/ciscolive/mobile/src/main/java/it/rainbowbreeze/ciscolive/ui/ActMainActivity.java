@@ -1,7 +1,5 @@
 package it.rainbowbreeze.ciscolive.ui;
 
-import java.util.Locale;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
@@ -19,7 +17,7 @@ import javax.inject.Inject;
 import it.rainbowbreeze.ciscolive.R;
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.common.MyApp;
-import it.rainbowbreeze.ciscolive.logic.CmxManager;
+import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
 import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 
 
@@ -42,7 +40,8 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
     ViewPager mViewPager;
 
     @Inject ILogFacility mLogFacility;
-    @Inject CmxManager mCmxManager;
+    @Inject
+    CmxManagerss mCmxManager;
     @Inject Bus mBus;
 
     @Override
