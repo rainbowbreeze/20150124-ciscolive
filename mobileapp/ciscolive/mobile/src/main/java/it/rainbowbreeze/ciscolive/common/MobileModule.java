@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
-import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 import it.rainbowbreeze.ciscolive.logic.action.ActionsManager;
 import it.rainbowbreeze.ciscolive.logic.bus.MainThreadBus;
 import it.rainbowbreeze.ciscolive.ui.ActMainActivity;
@@ -67,18 +67,18 @@ public class MobileModule {
         return new AppPrefsManager(appContext, logFacility);
     }
 
-    @Provides @Singleton public CmxManagerss provideCmxManager(
+    @Provides @Singleton public CmxManager provideCmxManager(
             @ForApplication Context appContext,
             ILogFacility logFacility,
             AppPrefsManager appPrefsManager,
             Bus bus) {
-        return new CmxManagerss(appContext, logFacility, appPrefsManager, bus);
+        return new CmxManager(appContext, logFacility, appPrefsManager, bus);
     }
 
     @Provides @Singleton public ActionsManager provideActionsManager(
             @ForApplication Context appContext,
             ILogFacility logFacility,
-            CmxManagerss cmxManager,
+            CmxManager cmxManager,
             Bus bus) {
         return new ActionsManager(appContext, logFacility, cmxManager, bus);
     }

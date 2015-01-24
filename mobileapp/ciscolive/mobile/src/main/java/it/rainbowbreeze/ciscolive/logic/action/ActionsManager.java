@@ -5,7 +5,7 @@ import android.content.Context;
 import com.squareup.otto.Bus;
 
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
-import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 import it.rainbowbreeze.libs.logic.RainbowActionsManager;
 
 /**
@@ -15,9 +15,9 @@ public class ActionsManager extends RainbowActionsManager {
     private static final String LOG_TAG = ActionsManager.class.getSimpleName();
     private final Context mAppContext;
     private final ILogFacility mLogFacility;
-    private final CmxManagerss mCmxManager;
+    private final CmxManager mCmxManager;
 
-    public ActionsManager(Context appContext, ILogFacility logFacility, CmxManagerss cmxManager, Bus bus) {
+    public ActionsManager(Context appContext, ILogFacility logFacility, CmxManager cmxManager, Bus bus) {
         super(logFacility, LOG_TAG);
         mAppContext = appContext;
         mLogFacility = logFacility;

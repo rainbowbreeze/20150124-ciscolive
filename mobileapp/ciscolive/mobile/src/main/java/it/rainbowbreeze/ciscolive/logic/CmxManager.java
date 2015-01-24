@@ -18,8 +18,8 @@ import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 /**
  * Created by alfredomorresi on 24/01/15.
  */
-public class CmxManagerss {
-    private static final String LOG_TAG = CmxManagerss.class.getSimpleName();
+public class CmxManager {
+    private static final String LOG_TAG = CmxManager.class.getSimpleName();
 
     private final CMXClient mCmxClient;
     private final Context mAppContext;
@@ -27,7 +27,7 @@ public class CmxManagerss {
     private final AppPrefsManager mAppPrefsManager;
     private final Bus mBus;
 
-    public CmxManagerss(
+    public CmxManager(
             Context appContext,
             ILogFacility logFacility,
             AppPrefsManager appPrefsManager,

@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import it.rainbowbreeze.ciscolive.R;
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.common.MyApp;
-import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 
 
@@ -41,7 +41,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
 
     @Inject ILogFacility mLogFacility;
     @Inject
-    CmxManagerss mCmxManager;
+    CmxManager mCmxManager;
     @Inject Bus mBus;
 
     @Override

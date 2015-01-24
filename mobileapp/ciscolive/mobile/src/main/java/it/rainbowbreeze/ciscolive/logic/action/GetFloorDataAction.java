@@ -1,7 +1,7 @@
 package it.rainbowbreeze.ciscolive.logic.action;
 
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
-import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 
 /**
  * Created by alfredomorresi on 24/01/15.
@@ -10,9 +10,9 @@ public class GetFloorDataAction extends ActionsManager.BaseAction {
     private static final String LOG_TAG = GetFloorDataAction.class.getSimpleName();
 
     private final ILogFacility mLogFacility;
-    private final CmxManagerss mCmxManager;
+    private final CmxManager mCmxManager;
 
-    public GetFloorDataAction(ILogFacility logFacility, ActionsManager actionManager, CmxManagerss cmxManager) {
+    public GetFloorDataAction(ILogFacility logFacility, ActionsManager actionManager, CmxManager cmxManager) {
         super(logFacility, actionManager);
         mLogFacility = logFacility;
         mCmxManager = cmxManager;

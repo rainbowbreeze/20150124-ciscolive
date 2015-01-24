@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import dagger.ObjectGraph;
 import it.rainbowbreeze.ciscolive.BuildConfig;
 import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
-import it.rainbowbreeze.ciscolive.logic.CmxManagerss;
+import it.rainbowbreeze.ciscolive.logic.CmxManager;
 
 /**
  * This file is part of KeepMoving. KeepMoving is free software: you can
@@ -42,7 +42,7 @@ public class MyApp extends Application {
     private ObjectGraph mObjectGraph;
     @Inject AppPrefsManager mAppPreferences;
     @Inject
-    CmxManagerss mCmxManager;
+    CmxManager mCmxManager;
 
     @Override
     public void onCreate() {
