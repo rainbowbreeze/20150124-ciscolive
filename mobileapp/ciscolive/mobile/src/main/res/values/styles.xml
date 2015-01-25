@@ -1,8 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorButtonNormal">#2196f3</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="BlueButton" parent="android:style/Widget.Material.Button">
+        <item name="android:background">@drawable/blue_button_background</item>
+    </style>
+
+    <style name="location_lblEvents">
+        <item name="android:textSize">20dp</item>
     </style>
 
 </resources>

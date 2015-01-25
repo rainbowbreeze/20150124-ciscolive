@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/layout_bg"
-            android:padding="5dp"
-            >
+        >
             <ImageView
                 android:id="@+id/location_imgMap"
                 android:layout_width="match_parent"
@@ -42,9 +41,59 @@
             android:id="@+id/location_btnAroundMe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/location_btnAroundMe"
-            android:background="#0000"
+            android:textColor="#FFFFFF"
         />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+        >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/calendar"
+                android:scaleType="fitCenter"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location_myevents"
+                style="@style/location_lblEvents"
+                android:layout_marginLeft="10dp"
+            />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/event_rounded_bg"
+            android:layout_marginTop="10dp"
+        >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/location_lblEvents"
+                android:text="Eatitaly: the welcome"
+            />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/event_rounded_bg"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/location_lblEvents"
+                android:text="Smart cities and food recycling"
+                />
+        </FrameLayout>
 
     </LinearLayout>
 
