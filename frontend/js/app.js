@@ -1,0 +1,115 @@
+angular.module("expo",['utils'])
+.controller("HeatmapController",function($scope, $interval, UserLocationService){
+	$scope.heatmap = {};
+	$scope.heatmap.ratio = {};
+	$scope.heatmap.poi = {
+ 			max: 50,
+ 			min: 0, 
+ 			data: []
+ 	};
+
+ 	$scope.intervalPromise = null;
+
+ 	var timeoutCall = function(fx){
+ 		return $interval(function(){
+ 				console.log("interval elapsed");
+ 				fx();
+ 		},$scope.timeoutVal*1000);
+ 	};
+ 	
+ 	$scope.getUserCoordinates = function(){
+ 		UserLocationService.getCoordinates($scope.heatmap.ratio.rx, $scope.heatmap.ratio.ry)
+ 		.then(function(data){
+			$scope.heatmap.poi.data = data.data;
+			},function(error){
+				console.log(error);
+			});
+ 	};
+ 	
+ 	$scope.realTimeUpdates = function(){
+ 		console.log($scope.intervalPromise);
+
+ 		if($scope.intervalPromise){
+ 			$interval.cancel($scope.intervalPromise);
+ 			$scope.intervalPromise = null;
+ 		}else{
+ 			$scope.intervalPromise = timeoutCall($scope.getUserCoordinates);
+ 		}	
+ 	}
+
+
+})
+.service("UserLocationService",function($http){
+	var basckendServiceHost = "http://10.10.30.215/explore/server/public/";
+
+	this.getCoordinates = function(rx,ry){
+		rx = rx ? rx : 1;
+		ry = ry ? ry : 1;
+		return $http({method: 'GET', url: basckendServiceHost+'api/users/coordinates?rx='+rx+'&ry='+ry});
+	}
+	this.getHeatmapConfig = function(){
+		return $http({method: 'GET', url: basckendServiceHost+'api/floors'});
+	}
+
+})
+.directive("heatmap",function(){
+	return{
+		restrict : "A",
+		scope: '=',
+		controller: function($scope, UserLocationService){
+				var ratio = {
+					rx : 1,
+					ry : 1
+				};
+				this.configHeatmap = function(htmlElem){
+					
+					UserLocationService.getHeatmapConfig().then(function(data){
+						$(htmlElem[0]).css("background-image","url("+data.data[0].image+")");
+						$scope.heatmap.ratio.rx = htmlElem[0].clientWidth / data.data[0].width;
+						$scope.heatmap.ratio.ry = htmlElem[0].clientHeight / data.data[0].length;
+
+ 					},function(error){
+ 						console.log(error);
+ 					});
+
+				};
+		},
+		link: function(scope, element, attrs, controller){
+				
+				var heatmapInstance = h337.create({
+						"element":document.getElementById("heatmapArea"), 
+						"radius":3, 
+						"visible":true
+				}); 
+				
+				controller.configHeatmap(element);
+				
+				scope.$watch('heatmap.poi',function(newValue,oldValue){
+					if(newValue != oldValue){
+						heatmapInstance.store.setDataSet(angular.fromJson(newValue));
+					}	
+				},true);
+		}
+	}
+});
+
+angular.module("utils",[]);
+/*.directive("onlyNumbers",function(){
+	return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+
+       modelCtrl.$parsers.push(function (inputValue) {
+
+         var transformedInput = inputValue.toLowerCase().replace(/ /g, ''); 
+
+         if (transformedInput!=inputValue) {
+           modelCtrl.$setViewValue(transformedInput);
+           modelCtrl.$render();
+         }         
+
+         return transformedInput;         
+       });
+     }
+   };
+})*/
