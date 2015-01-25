@@ -27,27 +27,11 @@ public class AppPrefsManager extends RainbowAppPrefsManager {
 
     @Override
     protected void setDefaultValuesInternal() {
-        mLogFacility.v(LOG_TAG, "Setting default values of preferences");
+        //mLogFacility.v(LOG_TAG, "Setting default values of preferences");
     }
 
     private static final String PREF_GPLUS_LOGIN_DONE = "pref_gpluslogindone";
 
-
-    /**
-     * Google Cloud Message registration id. It should be generated once for each installed app,
-     * so even if the user unregisters from the backend, the next time she registers the previous
-     * registration id should be user.
-     * <p/>
-     * Look at GoogleCloudMessaging.html#unregister() reference for detailed instructions
-     */
-    private static final String PREF_GCM_REGID = "pref_gcmRegId";
-
-    public AppPrefsManager setGCMRegId(String newValue) {
-        openSharedEditor();
-        mSharedEditor.putString(PREF_GCM_REGID, newValue);
-        saveIfNeeded();
-        return this;
-    }
 
     /**
      * Google Cloud Message registration id. It should be generated once for each installed app,
@@ -68,4 +52,33 @@ public class AppPrefsManager extends RainbowAppPrefsManager {
         saveIfNeeded();
         return this;
     }
+
+    public String getServerAddress() {
+        //return "64.103.26.61";
+        return "10.10.20.13";
+    }
+    public String getServerPort() {
+        //return "8081";
+        return "8082";
+    }
+
+    /**
+     * Google Cloud Message registration id. It should be generated once for each installed app,
+     * so even if the user unregisters from the backend, the next time she registers the previous
+     * registration id should be user.
+     *
+     * Look at GoogleCloudMessaging.html#unregister() reference for detailed instructions
+     */
+    private static final String PREF_GCM_REGID = "pref_gcmRegId";
+    public String getGCMRegId() {
+        //return mAppPreferences.getString(PREF_GCM_REGID, null);
+        return "1231231231";
+    }
+    public AppPrefsManager setGCMRegId(String newValue) {
+        openSharedEditor();
+        mSharedEditor.putString(PREF_GCM_REGID, newValue);
+        saveIfNeeded();
+        return this;
+    }
+
 }

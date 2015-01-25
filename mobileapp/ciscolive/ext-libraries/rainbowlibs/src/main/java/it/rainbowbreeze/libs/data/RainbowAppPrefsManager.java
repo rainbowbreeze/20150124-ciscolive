@@ -63,6 +63,7 @@ public abstract class RainbowAppPrefsManager {
             }
             // Adds customized values
             setBatchSave();
+            openSharedEditor();
             setDefaultValuesInternal();
             save();
         }

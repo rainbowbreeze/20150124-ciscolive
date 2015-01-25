@@ -4,9 +4,10 @@ package it.rainbowbreeze.ciscolive.common;
  * Created by alfredomorresi on 19/10/14.
  */
 public abstract class SharedBag {
-    public final static String APP_NAME_LOG = "PicAmazement";
+    public final static String APP_NAME_LOG = "CiscoLive";
+    public static final long ID_NOT_SET = -1;
 
-
+    /*
     public final static String WEAR_PATH_AMAZINGPICTURE = "/AmazingPicture";
     public final static String WEAR_PATH_REMOVEPICTURE = "/RemovePicture";
     public final static String WEAR_PATH_UPLOADPICTURE = "/UploadPicture";
@@ -24,4 +25,5 @@ public abstract class SharedBag {
 
     public static final long ID_NOT_SET = -1;
     public static final long GOOGLE_API_CLIENT_TIMEOUT = 30;  // seconds
+    */
 }
