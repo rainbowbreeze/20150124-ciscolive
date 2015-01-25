@@ -48,8 +48,8 @@ public class MyApp extends Application {
     public void onCreate() {
 
         super.onCreate();
-        Picasso.with(getApplicationContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
-        Picasso.with(getApplicationContext()).setLoggingEnabled(BuildConfig.DEBUG);
+        //Picasso.with(getApplicationContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
+        //Picasso.with(getApplicationContext()).setLoggingEnabled(BuildConfig.DEBUG);
 
         mObjectGraph = ObjectGraph.create(getModules().toArray());
         inject(this);

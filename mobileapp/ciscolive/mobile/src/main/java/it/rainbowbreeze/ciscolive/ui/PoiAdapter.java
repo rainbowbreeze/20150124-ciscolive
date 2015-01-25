@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import it.rainbowbreeze.ciscolive.R;
 import it.rainbowbreeze.ciscolive.domain.Poi;
 
@@ -30,10 +32,20 @@ public class PoiAdapter extends ArrayAdapter<Poi> {
             ViewHolder holder = new ViewHolder();
             rootView.setTag(holder);
             holder.lblName = (TextView) rootView.findViewById(R.id.poiitem_lblName);
+            holder.image = (ImageView) rootView.findViewById(R.id.poiitem_imgPoi);
+            holder.visited = (ImageView) rootView.findViewById(R.id.poiitem_imgVisited);
+            holder.lblVisitors = (TextView) rootView.findViewById(R.id.poiitem_lblVisitors);
         }
         ViewHolder holder = (ViewHolder) rootView.getTag();
         Poi poi = getItem(position);
         holder.lblName.setText(poi.name);
+        holder.visited.setVisibility(poi.visited ? View.VISIBLE : View.GONE);
+        holder.lblVisitors.setText("Visitors now: " + poi.users);
+        Picasso.with(getContext())
+                .load(poi.url)
+                .fit()
+                .centerCrop()
+                .into(holder.image);
 
         return rootView;
     }
@@ -41,5 +53,7 @@ public class PoiAdapter extends ArrayAdapter<Poi> {
     private static class ViewHolder {
         ImageView image;
         TextView lblName;
+        ImageView visited;
+        TextView lblVisitors;
     }
 }

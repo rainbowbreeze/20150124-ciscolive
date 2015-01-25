@@ -1,22 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
 >
-    <!-- A CardView that contains a TextView -->
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp">
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp">
+        android:layout_marginTop="5dp"
+    >
 
+        <ImageView
+            android:id="@+id/poiitem_imgPoi"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#bbffffff"
+        />
+        <TextView
+            android:id="@+id/poiitem_lblVisitors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="25dp"
+            android:gravity="center"
+            />
         <TextView
             android:id="@+id/poiitem_lblName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="33dp"
+            style="@style/location_lblEvents"
+            android:textSize="30dp"
+            android:gravity="center"
         />
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+
+        <ImageView
+            android:id="@+id/poiitem_imgVisited"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_tick"
+            android:layout_margin="10dp"
+        />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+</FrameLayout>

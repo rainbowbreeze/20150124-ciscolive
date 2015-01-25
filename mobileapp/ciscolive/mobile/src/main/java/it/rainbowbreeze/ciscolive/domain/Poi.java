@@ -6,4 +6,8 @@ package it.rainbowbreeze.ciscolive.domain;
 public class Poi {
     public String name;
     public String url;
+    public int users;
+    public double x;
+    public double y;
+    public boolean visited;
 }
