@@ -16,4 +16,7 @@ public class Bag extends SharedBag {
 
     public final static int JOBID_SCHEDULE_RETRIEVE = 100;
 
+    public static final String VENUE_ID = "AIR-MSE-VA-K9:V01:hackmse.cisco.com_efbb44a6-3dc8-11e4-8ec8-0050569144c8:723412731918549037";
+
+    public static final String FLOOR_ID = "723412731918549053";
 }

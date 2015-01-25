@@ -28,4 +28,8 @@ public class ActionsManager extends RainbowActionsManager {
         return new GetFloorDataAction(mLogFacility, this, mCmxManager);
     }
 
+    public GetFloorImageAction getFloorImageAction() {
+        return new GetFloorImageAction(mLogFacility, this, mCmxManager);
+    }
+
 }

@@ -1,23 +1,23 @@
 package it.rainbowbreeze.ciscolive.logic;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.cisco.cmx.model.CMXClientLocation;
-import com.cisco.cmx.model.CMXVenue;
 import com.cisco.cmx.network.CMXClient;
 import com.cisco.cmx.network.CMXClientLocationResponseHandler;
 import com.cisco.cmx.network.CMXClientRegisteringResponseHandler;
-import com.cisco.cmx.network.CMXVenuesResponseHandler;
+import com.cisco.cmx.network.CMXImageResponseHandler;
 import com.squareup.otto.Bus;
 
 import java.net.MalformedURLException;
-import java.util.List;
 
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
 import it.rainbowbreeze.ciscolive.domain.Floor;
 import it.rainbowbreeze.ciscolive.logic.bus.CmxLocationUpdatedEvent;
 import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
+import it.rainbowbreeze.ciscolive.logic.bus.FloorImageEvent;
 
 /**
  * Created by alfredomorresi on 24/01/15.
@@ -121,7 +121,26 @@ public class CmxManager {
         return null;
     }
 
+    /**
+     *
+     * Venues:
+     *  Id: AIR-MSE-VA-K9:V01:hackmse.cisco.com_efbb44a6-3dc8-11e4-8ec8-0050569144c8:723412731918549037
+     *  Name: AvanziBuilding
+     *
+     * Floors:
+     *  Id: 723412731918549053
+     *  Hierarchy: System Campus>AvanziBuilding>AvanziFloor
+     *  Height: 10
+     *  Length: 75
+     *  Width: 35
+     *  Unit: FEET
+     *
+     * @param venueId
+     * @param floorId
+     * @return
+     */
     public Floor getFloorInfo(String venueId, String floorId) {
+        /**
         mCmxClient.loadVenues(new CMXVenuesResponseHandler() {
             @Override
             public void onSuccess(List<CMXVenue> venues) {
@@ -136,6 +155,43 @@ public class CmxManager {
                 mLogFacility.v(LOG_TAG, "Failed to load venues: " + error.getMessage());
             }
         });
+         */
+
+        /**
+        mCmxClient.loadMaps(venueId, new CMXFloorsResponseHandler() {
+            @Override
+            public void onSuccess(List<CMXFloor> floors) {
+                mLogFacility.v(LOG_TAG, "Total floors: " + floors.size());
+                for(CMXFloor floor : floors) {
+                    mLogFacility.v(LOG_TAG, "Floor: " + floor.toString());
+                }
+            }
+        });
+         */
         return null;
     }
+
+    public Bitmap getFloorImage(final String venueId, final String floorId) {
+        mCmxClient.loadFloorImage(venueId, floorId, new CMXImageResponseHandler() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                mLogFacility.v(LOG_TAG, "Start loading of map for venue " + venueId + " and floor " + floorId);
+            }
+
+            @Override
+            public void onSuccess(Bitmap bitmap) {
+                super.onSuccess(bitmap);
+                mLogFacility.v(LOG_TAG, "Loaded image for floor " + floorId);
+                mBus.post(new FloorImageEvent(bitmap, 35, 75));
+            }
+
+            @Override
+            public void onFailure(Throwable error) {
+                super.onFailure(error);
+                mLogFacility.e(LOG_TAG, "Failed loading of image for floor: " + error.getMessage());
+            }
+        });
+        return null;
+    };
 }
