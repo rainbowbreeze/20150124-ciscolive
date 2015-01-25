@@ -5,6 +5,8 @@ body{
 	font-family: "Arial", sans-serif;
 }
 
+body, html{overflow: hidden;}
+
 h1{
 	font-size: 2em;
 	color: #000;
@@ -67,9 +69,18 @@ button{
 
 input[type="number"]{
 	height: 2.5em;
-border: 0;
-position: relative;
-left: -12px;
-border: 1px solid #000;
-text-indent: 10px;
+	border: 0;
+	position: relative;
+	left: -12px;
+	border: 1px solid #000;
+	text-indent: 10px;
+}
+
+.poi{
+	background-color: red;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	float: right;
+
 }

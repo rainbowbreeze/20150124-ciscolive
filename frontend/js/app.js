@@ -1,4 +1,4 @@
-angular.module("expo",['utils'])
+angular.module("expo",[])
 .controller("HeatmapController",function($scope, $interval, UserLocationService){
 	$scope.heatmap = {};
 	$scope.heatmap.ratio = {};
@@ -7,7 +7,9 @@ angular.module("expo",['utils'])
  			min: 0, 
  			data: []
  	};
-$scope.timerVal=6;
+
+ 	$scope.pois = [];
+ 	$scope.timeoutVal = 6;
  	$scope.intervalPromise = null;
 
  	var timeoutCall = function(fx){
@@ -35,8 +37,10 @@ $scope.timerVal=6;
  		}else{
  			$scope.intervalPromise = timeoutCall($scope.getUserCoordinates);
  		}	
- 	}
-
+ 	};
+ 	/*$scope.togglePOIS = function(){
+ 		angular.forEach($scope.pois)
+ 	};*/
 
 })
 .service("UserLocationService",function($http){
@@ -67,7 +71,7 @@ $scope.timerVal=6;
 						$(htmlElem[0]).css("background-image","url("+data.data[0].image+")");
 						$scope.heatmap.ratio.rx = htmlElem[0].clientWidth / data.data[0].width;
 						$scope.heatmap.ratio.ry = htmlElem[0].clientHeight / data.data[0].length;
-
+						$scope.pois = data.data[0].pois;
  					},function(error){
  						console.log(error);
  					});
@@ -91,25 +95,9 @@ $scope.timerVal=6;
 				},true);
 		}
 	}
+})
+.directive("expoPoi",function(){
+	return{
+		templateUrl : "poi-template.html"
+	}
 });
-
-angular.module("utils",[]);
-/*.directive("onlyNumbers",function(){
-	return {
-     require: 'ngModel',
-     link: function(scope, element, attrs, modelCtrl) {
-
-       modelCtrl.$parsers.push(function (inputValue) {
-
-         var transformedInput = inputValue.toLowerCase().replace(/ /g, ''); 
-
-         if (transformedInput!=inputValue) {
-           modelCtrl.$setViewValue(transformedInput);
-           modelCtrl.$render();
-         }         
-
-         return transformedInput;         
-       });
-     }
-   };
-})*/
