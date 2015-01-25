@@ -23,8 +23,8 @@ import it.rainbowbreeze.ciscolive.logic.bus.CmxRegistrationResultEvent;
 import it.rainbowbreeze.ciscolive.logic.action.ActionsManager;
 
 
-public class ActMainActivity extends ActionBarActivity implements ActionBar.TabListener {
-    private static final String LOG_TAG = ActMainActivity.class.getSimpleName();
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide

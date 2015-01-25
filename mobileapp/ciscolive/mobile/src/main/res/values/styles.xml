@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:colorButtonNormal">#2196f3</item>
+        <item name="colorPrimary">#FFFFFF</item>
         <!-- Customize your theme here. -->
     </style>
 

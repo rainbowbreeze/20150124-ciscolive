@@ -13,7 +13,7 @@ import android.os.Build;
 
 import it.rainbowbreeze.ciscolive.R;
 
-public class LocationActivity extends ActionBarActivity {
+public class PoiActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class LocationActivity extends ActionBarActivity {
         setContentView(R.layout.act_location);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new LocationFragment())
+                    .add(R.id.container, new PoiFragment())
                     .commit();
         }
     }

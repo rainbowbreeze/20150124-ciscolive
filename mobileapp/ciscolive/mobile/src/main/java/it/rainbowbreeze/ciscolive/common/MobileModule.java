@@ -12,7 +12,7 @@ import it.rainbowbreeze.ciscolive.data.AppPrefsManager;
 import it.rainbowbreeze.ciscolive.logic.CmxManager;
 import it.rainbowbreeze.ciscolive.logic.action.ActionsManager;
 import it.rainbowbreeze.ciscolive.logic.bus.MainThreadBus;
-import it.rainbowbreeze.ciscolive.ui.ActMainActivity;
+import it.rainbowbreeze.ciscolive.ui.MainActivity;
 import it.rainbowbreeze.ciscolive.ui.LocationFragment;
 
 /**
@@ -25,7 +25,7 @@ import it.rainbowbreeze.ciscolive.ui.LocationFragment;
 
                 AppPrefsManager.class,
 
-                ActMainActivity.class,
+                MainActivity.class,
                 LocationFragment.class,
         },
         // True because it declares @Provides not used inside the class, but outside.
