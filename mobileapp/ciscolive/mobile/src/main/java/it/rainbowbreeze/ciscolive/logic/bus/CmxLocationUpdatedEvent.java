@@ -12,12 +12,12 @@ public class CmxLocationUpdatedEvent {
         this.mLocation = location;
     }
 
-    public double getLat() {
-        return mLocation.getGeoCoordinate().getLatitude();
+    public double getX() {
+        return mLocation.getMapCoordinate().getX();
     }
 
-    public double getLong() {
-        return mLocation.getGeoCoordinate().getLongitude();
+    public double getY() {
+        return mLocation.getMapCoordinate().getY();
     }
 
     @Override

@@ -15,6 +15,7 @@ import com.squareup.otto.Subscribe;
 import javax.inject.Inject;
 
 import it.rainbowbreeze.ciscolive.R;
+import it.rainbowbreeze.ciscolive.common.Bag;
 import it.rainbowbreeze.ciscolive.common.ILogFacility;
 import it.rainbowbreeze.ciscolive.common.MyApp;
 import it.rainbowbreeze.ciscolive.logic.CmxManager;
@@ -93,7 +94,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
         } else {
             mLogFacility.v(LOG_TAG, "CMX server already registered, start location updates");
             mActionsManager.getFloorDataAction()
-                    .setVenueId("ssss")
+                    .setVenueId(Bag.VENUE_ID)
                     .setFloorId("alll")
                     .executeAsync();
             mCmxManager.startLocationUpdate();
