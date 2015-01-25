@@ -25,3 +25,4 @@ proguard/
 # Log Files
 *.log
 nbproject/
+frontend/js/vendor/
