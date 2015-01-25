@@ -7,7 +7,7 @@ angular.module("expo",['utils'])
  			min: 0, 
  			data: []
  	};
-
+$scope.timerVal=6;
  	$scope.intervalPromise = null;
 
  	var timeoutCall = function(fx){

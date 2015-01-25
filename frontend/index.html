@@ -19,11 +19,11 @@
 		<div id="main" ng-controller = "HeatmapController">
 
 		<div id = "menu">
-				<h1>You are here!!</h1>
-				<button ng-click = "getUserCoordinates()">Add poi</button>
+				<h1>Crowd Manager</h1>
+				<!--<button ng-click = "getUserCoordinates()">Add poi</button>-->
 				<button ng-click = "realTimeUpdates()">Real Time</button>
-				<input type="number" name="timeout" ng-model="timeoutVal"
-                 min="0" max="99" ng-trim="false" only-numbers> sec
+				<!--<input type="number" name="timeout" ng-model="timeoutVal"
+                 min="0" max="99" ng-trim="false" only-numbers> sec-->
 			</div>
 			
 			<div id="heatmapArea" heatmap="{{poi}}"></div>
