@@ -1,15 +1,53 @@
+body{
+	margin: 0;
+	background-color: #333;
+	font-size: 20px;
+	font-family: "Arial", sans-serif;
+}
+
+h1{
+	font-size: 2em;
+	color: #FFF;
+}
+
+#logo{
+	height: 3em;
+	width: 100%;
+	background-image: url(../img/logo.png);
+	background-size: 80%;
+	margin: 1em 0 0 0;
+	background-position: top center;
+	background-repeat: no-repeat;
+}
+
+#menu{
+	margin: 0 0 1em 0;
+	color: #FFF;
+}
+
+#sidebar{
+	width: 20%;
+	height: 100%;
+	float: left;
+	background: #FFF;
+	position: absolute;
+}
+
 #main {
 	position:relative;
-	width:95%;
-	margin: 0 auto;
+	width: 80%;
+	margin: 1em 0 0 0;
+	box-sizing: border-box;
+	padding: 0 1em;
+	float: right;
 }
 
 #heatmapArea {
-	width: 1000px;
-	height: 486px;
-	position:relative;
+	width: 100%;
+	float: right;
+	height: 500px;
+	position: relative;
 	float:left;
-	border: 1px dashed black;
 	background-repeat: no-repeat;
     background-size: contain;
 }

@@ -78,7 +78,7 @@ angular.module("expo",['utils'])
 				
 				var heatmapInstance = h337.create({
 						"element":document.getElementById("heatmapArea"), 
-						"radius":3, 
+						"radius":7, 
 						"visible":true
 				}); 
 				
