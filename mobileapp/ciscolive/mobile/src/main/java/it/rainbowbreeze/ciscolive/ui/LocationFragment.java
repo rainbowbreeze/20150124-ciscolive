@@ -180,8 +180,8 @@ public class LocationFragment extends Fragment {
         int imgY = (int) (mImgFloor.getTop() + mImgFloor.getHeight() / mMapWidth * y);
 
         FrameLayout.LayoutParams p = (FrameLayout.LayoutParams) mImgProfile.getLayoutParams();
-        p.leftMargin = imgX;
-        p.topMargin = imgY;
+        p.leftMargin = imgX - mImgProfile.getWidth() / 2;
+        p.topMargin = imgY - mImgProfile.getHeight() / 2;
         mImgProfile.setLayoutParams(p);
         mLogFacility.v(LOG_TAG, "Moving user picture to Top: " + y + " Left: " + x);
     }

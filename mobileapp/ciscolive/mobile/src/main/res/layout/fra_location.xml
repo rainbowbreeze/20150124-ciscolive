@@ -6,39 +6,48 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
 >
-    <FrameLayout
-        android:id="@+id/location_layMapContainer"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF0000"
+        android:orientation="vertical"
     >
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <FrameLayout
+            android:id="@+id/location_layMapContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/location_lblHello"
-        />
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_bg"
+            android:padding="5dp"
+            >
+            <ImageView
+                android:id="@+id/location_imgMap"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                />
 
-        <ImageView
-            android:id="@+id/location_imgMap"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/location_imgProfile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:border_width="1dp"
+                app:border_color="#FF000000"
+                android:src="@drawable/ic_launcher"
+                android:visibility="gone"
+                />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/location_btnAroundMe"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scaleType="centerInside"
+            android:layout_height="wrap_content"
+            android:text="@string/location_btnAroundMe"
+            android:background="#0000"
         />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/location_imgProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:border_width="1dp"
-            app:border_color="#FF000000"
-            android:src="@drawable/ic_launcher"
-            android:visibility="gone"
-        />
+    </LinearLayout>
 
-    </FrameLayout>
 
 </ScrollView>
 

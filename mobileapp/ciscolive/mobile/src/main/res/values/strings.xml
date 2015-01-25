@@ -9,5 +9,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="location_lblHello">Hello location fragment</string>
+    <string name="location_btnAroundMe">Things Around Me</string>
 
 </resources>
