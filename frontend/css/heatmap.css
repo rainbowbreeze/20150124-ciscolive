@@ -5,8 +5,6 @@ body{
 	font-family: "Arial", sans-serif;
 }
 
-body, html{overflow: hidden;}
-
 h1{
 	font-size: 2em;
 	color: #000;
@@ -77,10 +75,20 @@ input[type="number"]{
 }
 
 .poi{
-	background-color: red;
-	width: 100px;
-	height: 100px;
+	background-color: rgba(0,120,255,.4);
+	border: 4px solid rgba(0,120,255,1);
+	width: 80px;
+	height: 80px;
+	color: #000;
 	position: relative;
+	top: 400px;
+	right: 80px;
+	margin: 0 60px;
 	float: right;
-
+	font-size: .7em;
+	padding: 40px;
+	border-radius: 100%;
+	z-index: 9999;
+	line-height: 1.4;
+	text-align: center;
 }
