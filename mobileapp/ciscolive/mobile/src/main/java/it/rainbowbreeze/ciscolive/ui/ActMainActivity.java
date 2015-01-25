@@ -46,6 +46,7 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
     @Inject ActionsManager mActionsManager;
     @Inject Bus mBus;
 
+    /**
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +100,31 @@ public class ActMainActivity extends ActionBarActivity implements ActionBar.TabL
                     .executeAsync();
             mCmxManager.startLocationUpdate();
         }
+    }
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((MyApp) getApplicationContext()).inject(this);
+        mLogFacility.logStartOfActivity(LOG_TAG, getClass(), savedInstanceState);
 
+        setContentView(R.layout.act_location);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new LocationFragment())
+                    .commit();
+        }
+        if (mCmxManager.registrationRequired()) {
+            mLogFacility.v(LOG_TAG, "Registering the CMX server");
+            mCmxManager.register();
+        } else {
+            mLogFacility.v(LOG_TAG, "CMX server already registered, start location updates");
+            mActionsManager.getFloorDataAction()
+                    .setVenueId(Bag.VENUE_ID)
+                    .setFloorId("alll")
+                    .executeAsync();
+            mCmxManager.startLocationUpdate();
+        }
     }
 
     @Override
