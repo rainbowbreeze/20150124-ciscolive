@@ -1,0 +1,24 @@
+{
+  "name": "expoapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rainbowbreeze/20150124-ciscolive",
+  "authors": [
+    "predorock <predorock@gmail.com>"
+  ],
+  "description": "A heatmap for expo",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "heatmap.js": "~0.0.1",
+    "angular": "~1.3.10",
+    "jquery": "~2.1.3"
+  }
+}

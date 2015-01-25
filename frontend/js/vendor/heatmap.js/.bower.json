@@ -1,0 +1,14 @@
+{
+  "name": "heatmap.js",
+  "homepage": "https://github.com/Coreorient/heatmap.js",
+  "version": "0.0.1",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "ace014063588cf0418c2445d42d3ec5309000352"
+  },
+  "_source": "git://github.com/Coreorient/heatmap.js.git",
+  "_target": "~0.0.1",
+  "_originalSource": "heatmap.js"
+}
