@@ -81,27 +81,24 @@ public class PoiFragment extends Fragment {
                 //poi.url = "http://lorempixel.com/300/300/";
                 poi.url = "http://www.cbc.arizona.edu/sites/default/files/undergraduate/2013_poster_fair.jpg";
                 poi.users = 45;
-                poi.visited = false;
                 poi.x = 35.55;
                 poi.y = 0.58;
-                poi.visited = true;
+                poi.visited = false;
                 pois.add(poi);
 
                 poi = new Poi();
                 poi.name = "Sustainable agriculture";
                 poi.url = "https://www.colourbox.com/preview/8197206-milan-italy-september-28-vegan-fest-on-september-28-2013-thousands-of-people-visited-the-fair-miveg-where-were-presented-vegan-biological-products-vegan-cook-and-animal-rights-convention.jpg";
                 poi.users = 76;
-                poi.visited = false;
                 poi.x = 74.55;
                 poi.y = 0.12;
-                poi.visited = false;
+                poi.visited = true;
                 pois.add(poi);
 
                 poi = new Poi();
                 poi.name = "Gluten free food";
                 poi.url = "http://st.depositphotos.com/1034986/3436/i/950/depositphotos_34362801-bologna-italy---september-8-vegan-fest-on-september-8-2013.-thousands-of-people-visited-the-fair-vegan-fest-where-were-presented-vegan-biological-and-natural-products-vegan-cook-and-animal-rights-conventions..jpg";
                 poi.users = 32;
-                poi.visited = false;
                 poi.x = 0.14;
                 poi.y = 0.25;
                 poi.visited = true;
@@ -111,7 +108,6 @@ public class PoiFragment extends Fragment {
                 poi.name = "Vegan food";
                 poi.url = "https://www.colourbox.com/preview/8197180-milan-italy-september-28-vegan-fest-on-september-28-2013-thousands-of-people-visited-the-fair-miveg-where-were-presented-vegan-biological-products-vegan-cook-and-animal-rights-convention.jpg";
                 poi.users = 90;
-                poi.visited = false;
                 poi.x = 28.72;
                 poi.y = 0.3;
                 poi.visited = false;

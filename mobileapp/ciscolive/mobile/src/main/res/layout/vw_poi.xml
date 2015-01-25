@@ -30,15 +30,17 @@
         />
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="#bbffffff"
+            android:layout_marginTop="75dp"
+            android:layout_height="75dp"
+            android:background="#bb000000"
         />
         <TextView
             android:id="@+id/poiitem_lblVisitors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:textSize="25dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:gravity="center"
             />
         <TextView
@@ -47,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:paddingBottom="33dp"
-            style="@style/location_lblEvents"
+            android:textColor="#FFFFFF"
             android:textSize="30dp"
             android:gravity="center"
         />
@@ -61,7 +63,6 @@
             android:src="@drawable/ic_tick"
             android:layout_margin="10dp"
         />
-
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
