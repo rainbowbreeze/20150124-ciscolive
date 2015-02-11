@@ -113,7 +113,7 @@ class HomeController extends BaseController {
                 "width"  => 75,
                 "height" => 10,
                 "length" => 35,
-                "image"  => "http:\/\/10.10.30.215\/explore\/server\/public\/images\/avanzi.jpg",
+                "image"  => url("images/avanzi.jpg"),
                 "unit"   => "FEET",
                 "pois"   => [
                     [
